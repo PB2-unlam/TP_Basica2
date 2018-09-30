@@ -19,16 +19,15 @@ public class Cerradura {
 	
 	//Metodos
 	public Boolean abrir(Integer clave) {
-		if(this.estaBloqueada) {
-			//Al entrar aca no abre nunca.
-		}else {
-			if(this.claveDeApertura == clave) {
+			if(claveDeApertura.equals(clave) && this.estaBloqueada == false) {
 				//Cuento apertura, reseteo fallidas y abro la cerradura
 				this.estadoCerradura = true;
 				this.aperturasExitosas+=1;
 				this.aperturasFallidas=0;
 			} else {
 				this.aperturasFallidas+=1;
+				if(this.aperturasFallidas >= this.cantidadDeFallosConsecutivosQueLaBloquean) {
+				this.estaBloqueada=true;
 			}
 		}
 		
@@ -48,11 +47,7 @@ public class Cerradura {
 	}
 	
 	public Boolean fueBloqueada() {
-		if(this.aperturasFallidas >= this.cantidadDeFallosConsecutivosQueLaBloquean || this.estaBloqueada) {
-			return this.estaBloqueada=true;
-		} else {
-			return this.estaBloqueada=false;
-		}
+			return this.estaBloqueada;
 	}
 	
 	public Integer contarAperturasExitosas() {
