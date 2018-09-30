@@ -33,23 +33,15 @@ public class Cerradura {
 	}
 	
 	public Boolean estaAbierta() {
-		if(this.estadoCerradura==true) {
-			return true;
-		} else {
-		return false;
-		}
+		return this.estadoCerradura;
 	}
 	
 	public Boolean estaCerrada() {
-		if(this.estadoCerradura==false) {
-			return true;
-		} else {
-			return false;
-		}
+		return !this.estadoCerradura;
 	}
 	
 	public Boolean fueBloqueada() {
-		if(this.cantidadDeFallosConsecutivosQueLaBloquean >= this.aperturasFallidas) {
+		if(this.aperturasFallidas >= this.cantidadDeFallosConsecutivosQueLaBloquean) {
 			return true;
 		} else {
 			return false;
